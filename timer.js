@@ -6,13 +6,7 @@ $(document).on('ready', function() {
         seconds: 0,
         hours: 0
     }
-    player1_time = {
-        minutes: 0,
-        seconds: 0,
-        hours: 0
-    }
     player_active = false
-    player1_active = false
     function add(tally, display_sel) {
         tally.seconds++
         if (tally.seconds >= 60){
@@ -29,8 +23,6 @@ $(document).on('ready', function() {
           $(display_sel).html(formatTime(tally.minutes)+':'+formatTime(tally.seconds));
         }
         var d_tot = player_time.hours*3600+player_time.minutes*60+player_time.seconds
-        var l_tot = player1_time.hours*3600+player1_time.minutes*60+player1_time.seconds
-        var pct = parseInt(d_tot/(d_tot+l_tot)*100)
     };
     function formatTime(num) {
         if(num < 10){
@@ -39,32 +31,23 @@ $(document).on('ready', function() {
           return num
         };
     };
+
+
     function tally_player() {
-        add(player_time, '#player-display')
+
+        add(player_time, '#player1-display');
     }
-    function tally_player1() {
-        add(player1_time, '#not-player-display')
-    }
-    var $player = $('#player');
-    var $not_player = $('#not-player')
-    $player.click( function(){
-        $player.toggleClass('pressed')
+
+    $('a').on('click', function () {
+        $foundId = this.id
+        console.log($foundId)
+        // $foundId.toggleClass('pressed')
         if(player_active){
             player_active = false;
             clearInterval(player_t)
         } else {
             player_active = true;
             player_t = setInterval(tally_player, 1000)
-        }
-    });
-    $not_player.click( function(){
-        $not_player.toggleClass('pressed')
-        if(player1_active){
-            player1_active = false;
-            clearInterval(player1_t)
-        } else {
-            player1_active = true;
-            player1_t = setInterval(tally_player1, 1000)
         }
     });
   })
