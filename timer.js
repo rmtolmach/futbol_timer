@@ -54,27 +54,17 @@ $(document).on('ready', function() {
             clearInterval(player_t)
         } else {
             player_active = true;
-            if(player1_active){
-                $not_player.toggleClass('pressed')
-                player1_active = false
-                clearInterval(player1_t)
-            }
             player_t = setInterval(tally_player, 1000)
         }
     });
     $not_player.click( function(){
         $not_player.toggleClass('pressed')
         if(player1_active){
-          player1_active = false;
-          clearInterval(player1_t)
+            player1_active = false;
+            clearInterval(player1_t)
         } else {
-          player1_active = true;
-          if(player_active){
-            $player.toggleClass('pressed')
-            player_active = false
-            clearInterval(player_t)
+            player1_active = true;
+            player1_t = setInterval(tally_player1, 1000)
         }
-        player1_t = setInterval(tally_player1, 1000)
-      }
     });
   })
