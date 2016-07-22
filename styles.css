@@ -32,6 +32,7 @@ h1 {
 .stop {
   color: red;
   padding-right: .4em;
+  display: none;
 }
 
 .game-time  {
@@ -46,6 +47,8 @@ h1 {
   padding-left: 0;
 }
 
-/*.btn-default.pressed {
-  background-color: red;
-}*/
+.btn-default.pressed {
+  content:url(green-pause.jpg);
+  height: 35px;
+  width: 35px;
+}
