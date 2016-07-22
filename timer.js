@@ -1,6 +1,11 @@
 $(document).on('ready', function() {
     console.log('create and begin the game here!');
 
+    total_time = {
+        minutes: 0,
+        seconds: 0,
+        hours: 0
+    }
     player1_time = {
         minutes: 0,
         seconds: 0,
@@ -52,6 +57,7 @@ $(document).on('ready', function() {
         hours: 0
     }
 
+    game_active = false
     player1_active = false
     player2_active = false
     player3_active = false
@@ -78,16 +84,18 @@ $(document).on('ready', function() {
         } else {
           $(display_sel).html(formatTime(tally.minutes)+':'+formatTime(tally.seconds));
         }
-        var player1_tot = player1_time.hours*3600+player1_time.minutes*60+player1_time.seconds
-        var player2_tot = player2_time.hours*3600+player2_time.minutes*60+player2_time.seconds
-        var player3_tot = player3_time.hours*3600+player3_time.minutes*60+player3_time.seconds
-        var player4_tot = player4_time.hours*3600+player4_time.minutes*60+player4_time.seconds
-        var player5_tot = player5_time.hours*3600+player5_time.minutes*60+player5_time.seconds
-        var player6_tot = player6_time.hours*3600+player6_time.minutes*60+player6_time.seconds
-        var player7_tot = player7_time.hours*3600+player7_time.minutes*60+player7_time.seconds
-        var player8_tot = player8_time.hours*3600+player8_time.minutes*60+player8_time.seconds
-        var player9_tot = player9_time.hours*3600+player9_time.minutes*60+player9_time.seconds
-        var player10_tot = player10_time.hours*3600+player10_time.minutes*60+player10_time.seconds
+
+        // var totalTime_tot = total_time.hours*3600+total_time.minutes*60+total_time.seconds
+        // var player1_tot = player1_time.hours*3600+player1_time.minutes*60+player1_time.seconds
+        // var player2_tot = player2_time.hours*3600+player2_time.minutes*60+player2_time.seconds
+        // var player3_tot = player3_time.hours*3600+player3_time.minutes*60+player3_time.seconds
+        // var player4_tot = player4_time.hours*3600+player4_time.minutes*60+player4_time.seconds
+        // var player5_tot = player5_time.hours*3600+player5_time.minutes*60+player5_time.seconds
+        // var player6_tot = player6_time.hours*3600+player6_time.minutes*60+player6_time.seconds
+        // var player7_tot = player7_time.hours*3600+player7_time.minutes*60+player7_time.seconds
+        // var player8_tot = player8_time.hours*3600+player8_time.minutes*60+player8_time.seconds
+        // var player9_tot = player9_time.hours*3600+player9_time.minutes*60+player9_time.seconds
+        // var player10_tot = player10_time.hours*3600+player10_time.minutes*60+player10_time.seconds
 
     };
     function formatTime(num) {
@@ -97,6 +105,10 @@ $(document).on('ready', function() {
           return num
         };
     };
+
+    function tally_totalTime() {
+        add(total_time, '#total-time-display')
+    }
     function tally_player1() {
         add(player1_time, '#player1-display')
     }
@@ -128,6 +140,7 @@ $(document).on('ready', function() {
         add(player10_time, '#player10-display')
     }
 
+    var $totalTime = $('#total-time');
     var $player1 = $('#player1');
     var $player2 = $('#player2');
     var $player3 = $('#player3');
@@ -139,11 +152,22 @@ $(document).on('ready', function() {
     var $player9 = $('#player9');
     var $player10 = $('#player10');
 
+    $totalTime.click( function(){
+        $totalTime.toggleClass('pressed')
+        if(game_active){
+            game_active = false;
+            clearInterval(game_t)
+        } else {
+            game_active = true;
+            game_t = setInterval(tally_totalTime, 1000)
+        }
+    });
+
     $player1.click( function(){
         $player1.toggleClass('pressed')
         if(player1_active){
             player1_active = false;
-            clearInterval(player1_t)
+            clearInterval(player1_t);
         } else {
             player1_active = true;
             player1_t = setInterval(tally_player1, 1000)

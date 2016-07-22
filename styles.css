@@ -1,0 +1,37 @@
+h1 {
+  color: ;
+}
+
+.timer {
+  display: inline;
+}
+
+.col-xs-6 {
+  padding: 1em 1em 1em .5em;
+}
+
+.start {
+  color: green;
+  padding-left: .4em;
+}
+
+.stop {
+  color: red;
+  padding-right: .4em;
+}
+
+.game-time  {
+  padding: 0 0 0 .5em;
+}
+
+.playing {
+  padding: 0 0 0 .5em;
+}
+
+.time {
+  padding-left: 0;
+}
+
+/*.btn-default.pressed {
+  background-color: red;
+}*/
