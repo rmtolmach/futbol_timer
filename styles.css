@@ -1,3 +1,17 @@
+body {
+  margin: auto 0;
+  text-align: center;
+}
+input {
+  width: 10%;
+}
+
+/*large display*/
+@media screen and (min-width: 45.5em) {
+  input {
+  }
+}
+
 h1 {
   color: ;
 }
